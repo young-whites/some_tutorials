@@ -1,0 +1,160 @@
+/***
+ * VSCode 工作区配置文件，通常用于定义多根目录工作区的设置
+ * folders ：定义工作区中包含的根文件夹
+ * settings：定义适用于整个工作区的全局设置
+ */
+
+
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"extensions": {
+		// 推荐的扩展列表，这些扩展将被建议安装
+		"recommendations": [
+			//-------------------------------------------------------------------------C/C++ 开发相关扩展
+			// 为 C/C++ 开发提供语言支持，包括智能感知、代码导航、代码格式化等功能
+			"ms-vscode.cpptools",
+			// 包含多个与 C/C++ 开发相关的扩展，方便一次性安装
+			"ms-vscode.cpptools-extension-pack",
+			// 为 C/C++ 开发提供主题支持
+			"ms-vscode.cpptools-themes",
+			//-------------------------------------------------------------------------Python 开发相关扩展
+			// 为 Python 开发提供语言支持，包括智能感知、代码导航、代码格式化等功能
+			"ms-python.python",
+			// 为 Python 开发提供调试支持
+			"ms-python.debugpy",
+			// 为 Python 开发提供代码格式化支持
+			"ms-python.black-formatter",
+			// 为 Python 开发提供 Pylance 语言服务器支持，提供更快的智能感知和类型检查
+			"ms-python.vscode-pylance",
+			//-------------------------------------------------------------------------嵌入式 开发相关扩展
+			// EIDE工具，提供对嵌入式设备开发的支持
+			"ms-vscode.vscode-embedded-tools",
+			// 嵌入式调试工具，提供对嵌入式设备的调试支持
+			"marus25.cortex-debug",
+			// RT-Thread Studio 扩展，提供对 RT-Thread Studio 的支持
+			"rt-thread.rt-thread-studio",
+			//-------------------------------------------------------------------------辅助类插件扩展
+			// kconfig语法高亮和提示
+			"nordic-semiconductor.nrf-kconfig",
+			// pdf预览
+			"tomoki1207.pdf",
+			// markdown格式化
+			"DavidAnson.vscode-markdownlint",
+			"yzhang.markdown-all-in-one",
+			"shd101wyy.markdown-preview-enhanced",
+			// jinja语法高亮
+			"samuelcolvin.jinjahtml",
+			// toml格式化
+			"tamasfe.even-better-toml",
+			// yaml格式化
+			"redhat.vscode-yaml"
+		]
+	},
+	"settings": {
+		//-------------------------------------------------------------------------
+		// 控制编辑器是否自动格式化粘贴的内容。格式化程序必须可用，并且能针对文档中的某一范围进行格式化
+		"editor.formatOnPaste": true,
+		// 保存时设置文件格式。格式化程序必须可用，并且不得关闭编辑器。当 #file.autoSave# 设置为afterDelay时，仅在显示保存时才会格式化文件
+		"editor.formatOnSave": true,
+		// 控制编辑器在键入一行后是否自动格式化该行
+		"editor.formatOnType": true,
+		// 启用后，编辑器将尝试在打开文件时猜测字符集编码。
+		"files.autoGuessEncoding": true,
+		// 启用后，保存文件时在文件末尾插入一个最终新行
+		"files.insertFinalNewline": true,
+		// 启用后，保存文件时将删除在最终新行后的所有新行
+		"files.trimFinalNewlines": true,
+		// 启用后，保存文件时将删除行尾的所有空格
+		"files.trimTrailingWhitespace": true,
+
+		//-------------------------------------------------------------------------
+		// 用作回退的预定义样式名称，以防使用样式 file 调用 clang-format 但找不到 .clang-format 文件
+		"C_Cpp.clang_format_fallbackStyle": "LLVM",
+		// 配置格式设置引擎
+		"C_Cpp.formatting": "clangFormat",
+		// 如果为 true，则在输入函数名称时自动添加括号
+		"C_Cpp.autocompleteAddParentheses": true,
+		// cppStandard 的默认值
+		"C_Cpp.default.cppStandard": "c++17",
+		// cStandard 的默认值
+		"C_Cpp.default.cStandard": "c11",
+
+		//-------------------------------------------------------------------------
+		// 在运行“同步”命令时，强调Git使用rebase而不是合并
+		"git.rebaseWhenSync": true,
+		// 如果设置为 true, 则自动从当前Git仓库的默认远程仓库抓取提交；若设置为 "all"，则自动从所有远程仓库抓取提交
+		"git.autofetch": "all",
+		// 如果设置为 true，则在拉取时自动清理远程分支
+		"git.pruneOnFetch": true,
+		// 如果设置为 true，则在检出分支之前自动拉取最新的提交
+		"git.pullBeforeCheckout": true,
+		// 如果设置为 true，则在提交时自动签名提交
+		"git.alwaysSignOff": true,
+
+		//-------------------------------------------------------------------------
+		"evenBetterToml.formatter.trailingNewline": true,
+		"evenBetterToml.formatter.alignComments": true,
+		"evenBetterToml.formatter.alignEntries": true,
+		"evenBetterToml.formatter.allowedBlankLines": 3,
+
+
+		//-------------------------------------------------------------------------
+		"python.analysis.autoFormatStrings": false,
+		"python.analysis.autoImportCompletions": true,
+		"python.terminal.executeInFileDir": true,
+		"python.analysis.completeFunctionParens": true,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter"
+		},
+		"black-formatter.args": [
+			"--line-length=128"
+		],
+
+		//-------------------------------------------------------------------------
+		// markdown
+		"[markdown]": {
+			"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+		},
+
+
+		//-------------------------------------------------------------------------
+		// 一组用于Windows的终端配置文件自定义，可在该平台上添加、移除或更改终端的启动方式
+		"terminal.integrated.profiles.windows": {
+			
+			/***
+			 * 指定终端使用的 PowerShell 类型为系统默认的 PowerShell
+			 * 该配置将使用 PowerShell 的默认路径和图标
+			 */
+			"PowerShell": {
+				"source": "PowerShell",
+				"icon": "terminal-powershell"
+			},
+
+			/***
+			 * 指定终端使用的 Windows 命令提示符类型
+			 * 该配置将尝试使用 Sysnative 路径（适用于 64 位系统）或 System32 路径（适用于 32 位系统）
+			 * 并使用 cmd.exe 的图标
+			 */
+			"Command Prompt": {
+				"path": [
+					"${env:windir}\\Sysnative\\cmd.exe",
+					"${env:windir}\\System32\\cmd.exe"
+				],
+				"args": [],
+				"icon": "terminal-cmd"
+			},
+
+
+			/***
+			 * 指定终端使用的 Git Bash 类型
+			 */
+			"Git Bash": {
+				"source": "Git Bash"
+			},
+		},
+	}
+}

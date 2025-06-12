@@ -1,15 +1,3 @@
-
-<style>
-.red-text {
-  color: #ff0000;
-  font-weight: bold;
-}
-.green-text {
-  color: #00ff00;
-  border: 1px solid gray;
-}
-</style>
-
 <style>
 .red {
   color: #ff0000;
@@ -26,7 +14,7 @@
 
 
 
-# <span class="green"><font size=4>STM32-RTT构建</font></span>
+# <span class="green"><font size=4>一、STM32-RTT构建</font></span>
 ```bash
 create_at：2025/06/09
 aliases：使用Clion进行STM32的RT-Thread开发
@@ -43,9 +31,14 @@ aliases：使用Clion进行STM32的RT-Thread开发
 ```
 
 
-# <span class="green"><font size=4>内核裁剪</font></span>
+# <span class="green"><font size=4>二、建立以工作区为形式的开发环境</font></span>
+## <font size=2>1.构建目录大纲</font>
 
 
+## <font size=2>2.下载必要的库文件</font>
+
+
+## 
 
 
 
