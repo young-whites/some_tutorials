@@ -1,0 +1,15 @@
+{
+  "workspace": {
+    "path": "${workspaceFolder}\\rtos\\rt-thread\\bsp\\beaglebone\\am335x_sk.eww"
+  },
+  "workspaces": {
+    "${workspaceFolder}\\rtos\\rt-thread\\bsp\\beaglebone\\am335x_sk.eww": {
+      "configs": {
+        "${workspaceFolder}\\rtos\\rt-thread\\bsp\\beaglebone\\am335x_sk.ewp": "DDR Debug"
+      },
+      "selected": {
+        "path": "${workspaceFolder}\\rtos\\rt-thread\\bsp\\beaglebone\\am335x_sk.ewp"
+      }
+    }
+  }
+}
