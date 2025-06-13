@@ -12,6 +12,7 @@
 #include <board.h>
 #include <rtthread.h>
 #include <drv_gpio.h>
+#include "drv_common.h"
 #ifndef RT_USING_NANO
 #include <rtdevice.h>
 #endif /* RT_USING_NANO */

@@ -15,25 +15,6 @@ except:
     print(RTT_ROOT)
     exit(-1)
 
-def bsp_pkg_check():
-    import subprocess
-
-    check_paths = [
-        os.path.join("packages", "CMSIS-Core-latest"),
-        os.path.join("packages", "stm32f1_cmsis_driver-latest"),
-        os.path.join("packages", "stm32f1_hal_driver-latest")
-    ]
-
-    need_update = not all(os.path.exists(p) for p in check_paths)
-
-    if need_update:
-        print("\n==============================================================")
-        print("Dependency packages missing, please running 'pkgs --update'...")
-        print("==============================================================")
-        exit(1)
-
-RegisterPreBuildingAction(bsp_pkg_check)
-
 TARGET = 'rt-thread.' + rtconfig.TARGET_EXT
 
 DefaultEnvironment(tools=[])
@@ -54,20 +35,19 @@ Export('env')
 Export('RTT_ROOT')
 Export('rtconfig')
 
-SDK_ROOT = os.path.abspath('./')
 
-if os.path.exists(SDK_ROOT + '/libraries'):
-    libraries_path_prefix = SDK_ROOT + '/libraries'
+
+if os.getenv('STM32_SDK_ROOT'):
+    STM32_SDK_ROOT = os.getenv('STM32_SDK_ROOT')
 else:
-    libraries_path_prefix = os.path.dirname(SDK_ROOT) + '/libraries'
+    STM32_SDK_ROOT = os.path.normpath(os.getcwd() + '/../../rtos/platform/stm32_libraries')
+
+Export('STM32_SDK_ROOT')
 
 # prepare building environment
 objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
 
 rtconfig.BSP_LIBRARY_TYPE = None
-
-# include drivers
-objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript'),variant_dir='build/libraries/HAL_Drivers', duplicate=0))
 
 # make a building
 DoBuilding(TARGET, objs)
