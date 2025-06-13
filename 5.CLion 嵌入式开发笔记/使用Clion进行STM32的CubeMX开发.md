@@ -39,7 +39,8 @@
 ![设置路径](./images/PGN2.png)
 
 
-
+## <font size=3>下载OpenOCD</font>
+[OpenOCD下载链接](https://gnutoolchains.com/arm-eabi/openocd/ "OpenOCD下载链接")
 
 
 

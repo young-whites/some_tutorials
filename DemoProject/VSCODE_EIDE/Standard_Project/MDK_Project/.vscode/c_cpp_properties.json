@@ -89,15 +89,13 @@
         {
             "name": "Target 1",
             "includePath": [
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_User",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_STM32F10x_FWlib\\inc",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_Core",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_Applications\\maBSP\\Inc",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_Applications\\macSYS\\Inc",
-                "D:\\Keil_v5\\ARM\\ARMCC\\include",
-                "D:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_STM32F10x_FWlib\\src",
-                "c:\\Users\\18452\\Documents\\GitHub\\DemoProject\\Standard_Project\\MDK_Applications\\macSYS\\Src"
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_User",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_STM32F10x_FWlib\\inc",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_Core",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_Applications\\maBSP\\Inc",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_Applications\\macSYS\\Inc",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_STM32F10x_FWlib\\src",
+                "i:\\GitHub\\some_tutorials\\DemoProject\\VSCODE_EIDE\\Standard_Project\\MDK_Applications\\macSYS\\Src"
             ],
             "defines": [
                 "STM32F10X_CL",
