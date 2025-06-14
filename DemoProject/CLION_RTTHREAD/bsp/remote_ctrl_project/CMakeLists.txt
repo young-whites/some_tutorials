@@ -96,9 +96,9 @@ SET(PROJECT_SOURCES
 	../../rtos/rt-thread/bsp/stm32/libraries/HAL_Drivers/drivers/drv_usart.c
 	../../rtos/rt-thread/bsp/stm32/libraries/HAL_Drivers/drv_common.c
 	../../rtos/rt-thread/components/finsh/msh_parse.c
-	../../rtos/rt-thread/components/finsh/shell.c
-	../../rtos/rt-thread/components/finsh/msh.c
 	../../rtos/rt-thread/components/finsh/cmd.c
+	../../rtos/rt-thread/components/finsh/msh.c
+	../../rtos/rt-thread/components/finsh/shell.c
 	../../rtos/rt-thread/src/clock.c
 	../../rtos/rt-thread/src/components.c
 	../../rtos/rt-thread/src/idle.c
@@ -119,19 +119,19 @@ SET(PROJECT_SOURCES
 	../../rtos/rt-thread/libcpu/arm/common/showmem.c
 	../../rtos/rt-thread/libcpu/arm/cortex-m3/context_gcc.S
 	../../rtos/rt-thread/libcpu/arm/cortex-m3/cpuport.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
 	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_crc.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cec.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_usart.c
 	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
 	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
 	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
-	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_usart.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cec.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c
+	../../rtos/platform/stm32_libraries/STM32F1xx_HAL/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
 )
 
 LINK_DIRECTORIES(
