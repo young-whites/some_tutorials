@@ -1,3 +1,0 @@
-orsource "rt-thread/Kconfig"
-orsource "packages/Kconfig"
-orsource "platform/Kconfig"
