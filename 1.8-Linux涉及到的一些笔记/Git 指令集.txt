@@ -78,7 +78,7 @@ mr_nights账号
 git remote add origin git@gitee.com:mr_nights/esp32-wroom-32-demo.git
 git remote add origin git@gitee.com:mr_nights/esp32-e-watch.git
 git remote add origin git@gitee.com:mr_nights/greenhouse-environmental-control-monitoring-system.git
-git remote add main git@github.com:young-nights/Remote-Control-Device.git
+
 
 如果确定本地的更改是正确的，并且不需要远程仓库的更改，可以使用强制推送：
 git push --force -u origin master
