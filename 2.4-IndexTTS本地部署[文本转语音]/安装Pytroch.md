@@ -33,13 +33,17 @@ nvidia-smi
 # 1. 先激活对应环境
 conda activate index-tts
 
-# 2. 卸载 PyTorch 及附带的所有 nvidia-* 库(这里以安装过CUDA-12.9版本为例)
+# 2. 查看当前PyTorch安装的CUDA版本号
+python -c "import torch; print(torch.version.cuda)"
+
+# 3. 卸载 PyTorch 及附带的所有 nvidia-* 库(这里以安装过CUDA-12.9版本为例)
+# pip uninstall -y torch torchvision torchaudio nvidia-cublas-cu129 nvidia-cuda-cupti-cu129 nvidia-cuda-nvrtc-cu129 nvidia-cuda-runtime-cu129 nvidia-cudnn-cu129 nvidia-cufft-cu129 nvidia-curand-cu129 nvidia-cusolver-cu129 nvidia-cusparse-cu129 nvidia-nccl-cu129 nvidia-nvtx-cu129
 pip uninstall -y torch torchvision torchaudio nvidia-cublas-cu129 nvidia-cuda-cupti-cu129 \
                  nvidia-cuda-nvrtc-cu129 nvidia-cuda-runtime-cu129 nvidia-cudnn-cu129 \
                  nvidia-cufft-cu129 nvidia-curand-cu129 nvidia-cusolver-cu129 \
                  nvidia-cusparse-cu129 nvidia-nccl-cu129 nvidia-nvtx-cu129
 
-# 3.再用 pip list | grep nvidia 确认无残留，就回到“无 PyTorch 私有 CUDA”状态。
+# 4.再用 pip list | grep nvidia 确认无残留，就回到“无 PyTorch 私有 CUDA”状态。
 pip list | grep nvidia              
 ```
 
