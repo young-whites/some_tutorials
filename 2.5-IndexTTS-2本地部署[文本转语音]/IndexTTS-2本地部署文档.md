@@ -140,9 +140,15 @@ modelscope download --model IndexTeam/IndexTTS-2 --local_dir checkpoints
 
 **下载依赖小模型**
 除了上述主模型，IndexTTS-2还依赖⼀些⼩模型，这些模型需要从**HuggingFace**载，本博将所需的小模型上传到百度网盘中，供需要时取用。
+```bash
+通过网盘分享的文件：小模型
+链接: https://pan.baidu.com/s/1u7tSx4FtzGnG6M6pG8ddvg?pwd=kjmz 提取码: kjmz 
+--来自百度网盘超级会员v9的分享
+```
 
+![复制小模型到指定路径下](./images/Index-tts-picture17.png)
 
-
+将解压得到的文件复制到如下的C盘文件夹路径中
 ```bash
 C:\Users\{你⾃⼰的⽤⼾名}\.cache\huggingface\hub
 ```
