@@ -63,5 +63,4 @@ RTT 版本：v4.1.0 或更高（支持 DMA 驱动）
 ![RT-Thread Settings配置](./images/uart_v1_pic5.png)
 
 
-
 </font>
