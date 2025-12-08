@@ -29,153 +29,260 @@
 </style>
 
 
-# <span class="wathet"><font size=4>Ubuntu的一些初始配置</font></span>
-## <font size=3>一、安装git工具</font>
-<font size=2>
-<div style="background:#e8f5e8;padding:10px;border-radius:6px;color:#333;">
-ℹ️ <span class="red">FFmpeg是一个开源的多媒体框架</span>，能够记录、转换和流媒体<span class="red">处理音视频数据</span>，它包含了一系列的工具和库，支持大量的多媒体格式，并能在不同的操作系统上运行，包括Windows、MacOS和Linux等。<br>
-</div>
-
-[📑Windows安装FFmpeg](./Windows安装FFmpeg.md)
-</font>
-
-## <font size=3>二、安装 Miniconda</font>
-<font size=2>
-<div style="background:#e8f5e8;padding:10px;border-radius:6px;color:#333;">
-ℹ️ <span class="red">Conda 是一个开源的软件包管理和环境管理系统，</span>适用于多种语言（如Python、R等），主要用于数据科学，机器学习等领域。它不仅能够帮助用户<span class="red">安装和管理软件包，</span>还能<span class="red">创建和管理独立的运行环境</span>，以便于处理不同项目间的依赖关系冲突。Conda通过其强大的依赖解析能力，可以确保安装的所有软件包和谐共存。<br>
-▪️ 跨平台支持：可在Windows、macOS和Linux上使用。<br>
-▪️ 环境管理：允许用户轻松创建、导出、列出和移除虚拟环境。<br>
-▪️ 包管理：提供从Anaconda仓库及其他第三方源中搜索、安装和更新软件包的能力。<br>
-▪️ 依赖解决：自动解决软件包之间的依赖关系。<br>
-
- **<span class="red">Miniconda 是 Conda 的一个最小发行版本，仅包含Conda包管理和Python解释器，没有预装任何其他软件包</span>**。他是获取Conda功能的一种轻量级方式，让用户可以从头开始构建自己的软件包集合和环境。
-
-▪️轻量化安装：相比于完整版的Anaconda，Miniconda的安装文件小得多，因为它只包含了最基本的功能。
-▪️灵活性：用户可以根据需要自行选择要安装的软件包，而不是一开始就安装大量可能用不到的软件包。
-▪️全面兼容：尽管是精简版，但Miniconda仍然提供了全部的Conda功能，包括环境和包管理能力。
-</div>
-
-[📑Windows安装 miniconda](./Windows安装Miniconda.md)
-
-</font>
-
-
-## <font size=3>三、创建项目conda环境</font>
+# <span class="wathet"><font size=4>Ubuntu初始软件配置与安装</font></span>
+## <font size=3>一、软件安装</font>
 <font size=2>
 
 ```bash
-#先创建index-tts项目环境同时配置指定版本的Python环境
-conda create -n index-tts python=3.10
-#再激活这个项目环境
-conda activate index-tts
+# Git安装
+sudo apt install git
+
+# vim安装
+sudo apt install vim
 ```
+
+</font>
+
+---
+
+## <font size=3>二、网络配置</font>
+<font size=2>
+
+ℹ️ Ubuntu 虚拟机的网络是通过 Virtual Box 与 Windows 电脑进行本地桥接得到的，在使用 Ubuntu（主要是 VirtualBox 虚拟机）中配置网络时，主要有以下几种选择：
+
+| 网络模式              | 是否能上网（访问外部网络） | 虚拟机之间能否互相通信   | 宿主机能否访问虚拟机 | 外部网络能否访问虚拟机   | 典型用途场景                               | 实现原理简述                                |
+| --------------------- | -------------------------- | ------------------------ | -------------------- | ------------------------ | ------------------------------------------ | ------------------------------------------- |
+| 网络地址转换(NAT)     | 可以（默认）               | 不可以                   | 可以（需端口转发）   | 不可以（需手动端口转发） | 日常学习、测试、上网最简单                 | 虚拟机通过宿主机做 NAT 转换上网             |
+| 桥接网卡(Bridged)     | 可以                       | 可以（同一局域网）       | 可以                 | 可以                     | 虚拟机需要被局域网其他设备访问（如服务器） | 虚拟机直接连到物理网卡，获得真实局域网 IP   |
+| NAT 网络(NAT Network) | 可以                       | 可以（同一 NAT 网络内）  | 可以（需端口转发）   | 不可以                   | 多虚拟机互访 + 共享上网，比桥接更安全      | NAT + 虚拟交换机，所有虚拟机在一个子网      |
+| 仅主机(Host-Only)     | 不可以                     | 可以                     | 可以                 | 不可以                   | 宿主机与虚拟机互访，不需要外网             | VirtualBox 创建私有网段（默认192.168.56.x） |
+| 内部网络(Internal)    | 不可以                     | 可以（同一内部网络名称） | 不可以               | 不可以                   | 多虚拟机完全隔离的私有网络测试             | 纯虚拟交换机，连宿主机都访问不到            |
+| 通用驱动(Generic)     | 取决于子模式               | 取决于子模式             | 取决于子模式         | 取决于子模式             | 极少使用（UDPTunnel、VDE 等特殊场景）      | 共享驱动模式，几乎没人用                    |
+| 云网络(Cloud)         | 可以（通过云端网络）       | 视云厂商网络而定         | 通常不可以           | 视配置而定               | 直接管理 Oracle Cloud 等云实例             | VirtualBox 6.1+ 新增，连接云 VM             |
+
+ℹ️ 各个模式默认IP范围：
+
+| 模式      | 默认网段           | 网关/DHCP                     | 备注                        |
+| --------- | ------------------ | ----------------------------- | --------------------------- |
+| NAT       | 10.0.2.0/24        | 10.0.0.2（宿主机）            | 每个虚拟机独立              |
+| NAT网络   | 10.0.2.0/24(可改)  | 有 DHCP，可自定义             | 多个虚拟机共享同一网段      |
+| 桥接      | 与宿主机同一局域网 | 路由器DHCP                    | 如 192.168.1.x、192.168.0.x |
+| Host-Only | 92.168.56.0/24     | 宿主机 192.168.56.1 提供 DHCP | VirtualBox 自动创建虚拟网卡 |
+| 内部网络  | 无（需手动设置）   | 无 DHCP，需手动配 IP          | 完全由用户定义              |
+
+ℹ️ 快速选择推荐：
+
+| 需求                                               | 推荐模式            | 理由                            |
+| -------------------------------------------------- | ------------------- | ------------------------------- |
+| 只是上网、写代码、测试软件                         | NAT（最省事）       | 开箱即用，不影响宿主机网络      |
+| 虚拟机要被局域网其他电脑访问（如 Web、SSH 服务器） | 桥接网卡            | 虚拟机获得真实局域网 IP，最直接 |
+| 多台虚拟机需要互相通信，同时一起上网               | NAT 网络            | 既能互访又能上网，比桥接更安全  |
+| 宿主机 ↔ 虚拟机互访，但不连外网                    | 仅主机（Host-Only） | 自动分配私有网段，安全隔离      |
+| 多台虚拟机构建完全隔离的测试网络                   | 内部网络            | 连宿主机都访问不到，最彻底隔离  |
+| 虚拟机需要固定 IP 且局域网可访问                   | 桥接（首选）        | 最简单直接                      |
+
+<span class="red">在进行嵌入式Linux开发时，需要保证 Ubuntu 与 Windows 和 开发板处于同一个网段中。因此，这里选择使用桥接的网络模式。</span>
+
+
+```bash
+# 在Windows的命令提示符中查看宿主机的IP地址，网关IP以及子网掩码等信息
+ipconfig
+```
+![查看ip地址](./images/img_ip_config_2.png)
+
+
+
+**静态IPv4地址分配**
+
+![分配静态IP地址](./images/img_ip_config_1.png)
+
+<span class="blue">设置完成后验证ip地址是否与宿主机桥接成功</span>
+
+```bash
+# 在Windows的命令提示符中ping通Ubuntu的网络
+ping 192.168.1.166
+```
+![检验静态IP配置](./images/img_ip_config_3.png)
+
 </font>
 
 
-## <font size=3>四、安装 Pynini</font>
-<font size=2>
-<div style="background:#e8f5e8;padding:10px;border-radius:6px;color:#333;">
-ℹ️ Pynini 是一个基于开源的有限状态转换器(Finite-State Transducer, FST)库——OpenFst 的 Python 绑定。它允许用户在Python环境中利用有限状态机的强大功能进行字符串处理、自然语言处理(NLP)等任务。Pynini特别适用于需要复杂规则和转换的应用场景，例如拼音纠正、形态分析、语音识别中的语言模型构建等。
+---
 
-在语音识别合成系统中 **<span class="red">Pynini可用于开发语音模型，帮助提高识别准确率或生成更加自然的声音输出</span>**<br>
-</div>
+## <font size=3>三、个性化配置</font>
+<font size=2>
+
+
+### <font size=2>终端颜色配置</font>
+
+```bash
+# 生成默认颜色配置：
+						dircolors -p > ~/.dircolors
+# 编辑颜色规则： 
+						nano ~/.dircolors
+# 找到DIR条目并修改：
+						DIR 01;36  # 目录颜色：粗体 + 青色
+# 加载配置到 ~/.bashrc：
+						echo 'eval "$(dircolors ~/.dircolors)"' >> ~/.bashrc
+						source ~/.bashrc
+
+```
+
+</font>
+
+
+## <font size=3>四、Windows 和 Ubuntu 文件互传</font>
+<font size=2>
+
+**开启 Ubuntu 下的 FTP 服务**
+
+1. 打开 Ubuntu 的终端窗口，然后执行如下命令来安装 FTP 服务
+```bash
+sudo apt-get install vsftpd
+```
+
+2. 等待软件自动安装，安装完成以后使用 VI 命令打开/etc/vsftpd.conf，命令如下
+```bash
+sudo vi /etc/vsftpd.conf
+```
+
+3. 打开 vsftpd.conf 文件以后找到如下两行
+```bash
+local_enable=YES
+write_enable=YES
+```
+
+4. 确保上面两行前面没有“#”，有的话就取消掉，完成以后如图所示
+![修改后](./images/img_ftp_1.png)
+
+5. 修改完 vsftpd.conf 以后保存退出，使用如下命令重启 FTP 服务
+```bash
+sudo /etc/init.d/vsftpd restart
+```
+
+**Windows 下FTP客户端安装**
+1. Windows 下 FTP 客户端使用 FileZilla，这是个免费的 FTP 客户端软件，可以在 FileZilla 官网下载
+[FileZilla官网下载链接](https://www.filezilla.cn/download)
 <br>
+2. FileZilla 软件界面
+![FileZilla](./images/img_ftp_2.png)
 
-```bash
-#代码块
-conda install -c conda-forge pynini==2.1.6
-pip install WeTextProcessing --no-deps
-```
-</font>
-
-
-## <font size=3>五、安装 PyTorch</font>
-<font size=2>
-<div style="background:#e8f5e8;padding:10px;border-radius:6px;color:#333;">
-
-ℹ️ **<span class="red">PyTorch 是一个开源的机器学习库</span>** ，主要用于自然语言处理、计算机视觉等领域中的应用，是学术界和工业界 **<span class="red">广泛使用的深度学习框架之一</span>**。
-</div>
-
-[📑安装 PyTorch](./安装Pytroch.md)
-
+**FileZilla软件设置**
+Ubuntu 作为 FTP 服务器， FileZilla 作为 FTP 客户端，客户端要连接到服务器上，打开站点管理器，点击：文件->站点管理器，打开以后如图所示。
+![FileZilla](./images/img_ftp_3.png)
 
 </font>
 
 
-## <font size=3>六、下载代码</font>
+
+## <font size=3>五、Ubuntu 下 NFS和SSH 服务开启</font>
 <font size=2>
 
-<div style="background:#fdecea;padding:10px 12px;border-left:4px solid #f66;border-radius:4px;color:#333;">
-这里特别说明一下，这个教程是笔者根据B站上的 FutureAI实验室 这个up主的内容复刻它敲出来的，由于代码更新迭代，完全按照up的步骤进行配置会产生无法运行的问题，下面会详细说明，这里可行的代码会上传到笔者自己的github上，因此就不写克隆官方代码的方案了。
-</div>
-
-[📑问题详述](./问题详述.md)
+**NFS服务开启**
+ℹ️ NFS（Network File System，网络文件系统）是一种由Sun Microsystems在1984年开发的分布式文件系统协议，允许客户端计算机像访问本地存储一样通过网络访问服务器上的文件。其核心目标是实现跨平台的共享存储，通过透明的远程文件访问简化数据管理。
 
 ```bash
-# 点击鼠标右键，打开gitbash，运行以下代码下载官网的v1.5.0版本代码
-# --depth 1 表示只下载该 Tag 的快照，不带其他历史，体积最小
-git clone --branch v1.5.0 --depth 1 https://github.com/index-tts/index-tts.git
+# 安装NFS
+sudo apt-get install nfs-kernel-server rpcbind
+```
+然后，在根目录下创建一个linux文件夹，在linux文件夹中在创建一个nfs文件夹，供nfs服务器使用，以后就可以在开发板上通过网络文件系统来访问nfs文件夹，在此之前，先配置nfs配置。
 
-#或者通过下面这个链接直接下载
+```bash
+# 打开nfs配置文件
+sudo vim /etc/exports
 ```
 
+打开配置文件后，在文件内容的末尾添加`/home/nights/linux/nfs *(rw,sync,no_root_squash)`
+![添加配置](./images/img_nfs_1.png)
+
+```bash
+# 重启nfs服务
+sudo /etc/init.d/nfs-kernel-server restart
+```
+
+
+**SSH**
+ℹ️ SSH（Secure Shell）是一种加密的网络协议，用于在不安全网络中安全地远程登录、执行命令、传输文件，甚至建立 VPN 隧道。它把传统 telnet/rsh 的明文通信全部换成强加密 + 完整性校验 + 身份认证，默认跑在 TCP 22 端口。
+ℹ️ 开启 Ubuntu 的 SSH 服务以后就可以在 Windwos 下使用终端软件登陆到 Ubuntu，比如使用 SecureCRT， Ubuntu 下使用如下命令开启 SSH 服务。
+
+<span class="red">ssh 的配置文件为 /etc/ssh/sshd_config ，使用默认配置即可</span>
+
+```bash
+# 安装ssh服务
+sudo apt-get install openssh-server
+```
 </font>
 
 
 
-## <font size=3>七、安装项目依赖</font>
+## <font size=3>六、交叉编译工具链安装</font>
 
 <font size=2>
+Ubuntu 默认自带的编译器是基于X86框架的 GCC 编译器，现在需要编译ARM框架的代码，X86下的GCC编译器就不适用，因此需要安装一个运行在X86框架上的GCC编译器。<br>
+
+Linaro官网链接：[Linaro下载链接](developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
+
+从宿主机类别看，有以下几种类别：
+
+![gcc编译器的类别](./GCC_Type.svg)
+
+解释：
+- <span class="red">arm- </span> ： ARMv7及更早的32位构架(Cortex-A7/A9)
+- <span class="red">aarch64- </span> ： ARMv8-A的64位构架，小端字节序(Cortex-A53/A72)
+- <span class="red">aarch64_be- </span>：ARM64位构架，大端字节序
+- <span class="red">none- </span> ： 无特定芯片生产厂商，通用版本
+- <span class="red">gnueabihf</span>：GNU EABI硬浮点版本，使用FPU硬件加速浮点运算
+
+本次使用的是基于Cortex-A7构架的I.MX6U多核处理器的开发板，因此此处使用`arm-none-linux-gnueabihf`版本的交叉编译器工具链。
+
+![gcc编译器下载](./images/img_toolchains_1.png)
+
+下载完成以后，把交叉编译器工具链的包移动到`linux文件夹`下的`tool文件夹`中;
 
 ```bash
-#先转到指定盘符（此处以D盘为例）
-D：
-#再转到index-tts代码文件下
-cd D:\Github-source-code\index-tts
-#然后安装依赖
-pip install -e .
-pip install gradio modelscope
+# 1.检查目标目录是否存在
+ls -a ~/linux/tool
 
+# 1.1 如果不存在，创建目标目录 
+sudo mkdir ~/linux/tool
+
+# 1.2 再次检查目录是否存在
+ls -a ~/linux/tool 
+
+# 2. 刚下载玩的包在Downloads文件夹中，移动到目标目录
+mv ~/Downloads/文件名 ~/linux/tool
 ```
+
+在Ubuntu的最上层的根目录中的`usr/local/`文件夹中创建`arm`文件夹，然后把工具链解压到这个`arm`文件夹中(这里默认已经创建好了，创建过程省略，直接移动+解压)
+
+```bash
+# 进入 /linux/tool 文件夹中，然后拷贝到 usr/local/arm 文件夹中
+sudo cp arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-linux-gnueabihf.tar.xz /usr/local/arm/ -f
+
+# 解压工具链压缩包
+sudo tar -vxf arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-linux-gnueabihf.tar.xz
+
+# 修改环境变量
+sudo vim /etc/profile
+
+# 打开 /etc/profile 以后，在文件末尾添加环境变量
+export PATH=$PATH:/usr/local/arm/arm-gnu-toolchain-14.3-rel1-x86_64-arm-none-linux-gnueabihf/bin
+```
+![配置环境变量](./images/img_toolchains_2.png)
+
+重启Ubuntu后，验证交叉编译器
+
+```bash
+arm-none-linux-gnueabihf-gcc --version
+```
+
 </font>
 
 
-
-## <font size=3>八、模型下载</font>
+## <font size=3>七、</font>
 <font size=2>
 
-<div style="background:#e8f5e8;padding:10px;border-radius:6px;color:#333;">
 
-ℹ️ <span class="wathet">IndexTTS 目前有两个版本，分别为 IndexTTS 和 IndexTTS-1.5 </span> ，**<span class="red">1.5版本显著提升了模型的稳定性和英语语言性能</span>**。根据需要选择一个版本下载即可
-</div>
-
-**IndexTTS-1.5**
-
-```bash
-modelscope download --model IndexTeam/IndexTTS-1.5 --local_dir models/IndexTTS-1.5
-```
-
-**IndexTTS**
-
-```bash
-modelscope download --model IndexTeam/IndexTTS --local_dir models/IndexTTS
-```
 
 </font>
-
-
-## <font size=3>九、启动Web界面</font>
-**IndexTTS-1.5**
-
-```bash
-python webui.py --model_dir models/IndexTTS-1.5
-```
-
-**IndexTTS**
-
-```bash
-python webui.py --model_dir models/IndexTTS
-```
-
-
 
