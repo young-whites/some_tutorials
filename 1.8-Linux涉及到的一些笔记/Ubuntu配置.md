@@ -143,7 +143,7 @@ sudo apt-get install vsftpd
 
 2. 等待软件自动安装，安装完成以后使用 VI 命令打开/etc/vsftpd.conf，命令如下
 ```bash
-sudo vi /etc/vsftpd.conf
+sudo vim /etc/vsftpd.conf
 ```
 
 3. 打开 vsftpd.conf 文件以后找到如下两行
