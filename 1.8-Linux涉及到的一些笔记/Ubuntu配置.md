@@ -224,6 +224,7 @@ sudo ufw allow ssh
 # 重启建议防火墙
 sudo ufw reload
 # 查询Ubuntu的IP地址
+ip addr show | grep inet
 hostname -I
 ```
 </font>
