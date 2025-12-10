@@ -208,8 +208,23 @@ sudo /etc/init.d/nfs-kernel-server restart
 <span class="red">ssh 的配置文件为 /etc/ssh/sshd_config ，使用默认配置即可</span>
 
 ```bash
-# 安装ssh服务
-sudo apt-get install openssh-server
+# 更新apt
+sudo apt update
+# 自动确认并安装ssh服务
+sudo apt install openssh-server -y
+# 检查状态(应该显示active（running）)
+sudo systemctl status ssh
+# 如果没启动，手动启动
+sudo systemctl start ssh
+# 建议设置成开机启动
+sudo systemctl enable ssh
+# 如果没开ufw可以跳过这一步，一般桌面版默认没开启，服务器版有些会开启
+# 允许ssh通过ufw防火墙
+sudo ufw allow ssh
+# 重启建议防火墙
+sudo ufw reload
+# 查询Ubuntu的IP地址
+hostname -I
 ```
 </font>
 
