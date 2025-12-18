@@ -5,14 +5,14 @@ sudo apt-get install git wget flex bison gperf python3-pip python3-venv cmake ni
 2.新建ESP32-WORKSPACE文件夹
 mkdir esp32
 
-3.进入ESP32-WORKSPACE文件夹安装esp-gitee-tools工具
+3.进入 esp32 文件夹安装esp-gitee-tools工具
 git clone https://gitee.com/EspressifSystems/esp-gitee-tools.git
 
 4.执行gitee工具切换镜像脚本
 cd esp-gitee-tools
 ./jihu-mirror.sh set
 
-5.进入ESP32-WORKSPACE文件夹并安装esp-idf工具
+5.进入 esp32 文件夹并安装esp-idf工具
 git clone --recursive https://github.com/espressif/esp-idf.git
 
 6.进入esp-idf文件夹并切换ESP32的版本为v5.2版本
